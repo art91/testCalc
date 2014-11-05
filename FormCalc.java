@@ -111,7 +111,6 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
     }
 
 	/**
-<<<<<<< HEAD
      * Расчет депозита
      * @param sum сумма вклада
      * @param percentage проценты
@@ -120,7 +119,7 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
      */
     public double CalculateDeposit(double sum, double percentage, int countDay){
         return Math.pow((double)1 + percentage / 100, (double)countDay / 365) * sum;
-=======
+	/**
      * Вывод результата расчета депозита для выбранной валюты
      * @param sum сумма вклада на депозит
      */
@@ -175,7 +174,6 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
                         String.format("%.3f", CalculateDeposit(sum, 2.5, countDay)) + " $\n");
             }
         }
->>>>>>> mstarven
     }
 
     /**
