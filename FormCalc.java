@@ -17,6 +17,20 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
 
     // Конструктор по умолчанию
     public FormCalc(){
+		super("Депозитный калькулятор");    // Заголовок окна
+        int sizeWidth = 640;                // Ширина окна
+        int sizeHeight = 400;               // Высота окна
+        // Получаетм размер экрана
+        Dimension t = Toolkit.getDefaultToolkit().getScreenSize();
+        // Считаем координаты центра экрана
+        int x = ((t.width - sizeWidth) / 2);
+        int y = ((t.height - sizeHeight) / 2);
+        // Устаналиваем окно по центру с шириной и высотой sizeWidth, sizeHeight
+        setBounds(x, y, sizeWidth, sizeHeight);
+        // При закрытии окна завершится и процесс программы
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Инициализируем компоненты на форму
+        InitializeComponentForm();
     }
 
     /**
@@ -96,7 +110,16 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
         app.setVisible(true);             // С этого момента приложение запущено!
     }
 
-
+	/**
+     * Расчет депозита
+     * @param sum сумма вклада
+     * @param percentage проценты
+     * @param countDay кол-во дней на который берется депозит
+     * @return Возвращает конечную сумму по окончанию депозита
+     */
+    public double CalculateDeposit(double sum, double percentage, int countDay){
+        return Math.pow((double)1 + percentage / 100, (double)countDay / 365) * sum;
+    }
 
     /**
      * Обработчик собтия нажатия на клавишу "Рассчитать"
