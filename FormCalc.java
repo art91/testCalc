@@ -111,6 +111,7 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
     }
 
 	/**
+<<<<<<< HEAD
      * Расчет депозита
      * @param sum сумма вклада
      * @param percentage проценты
@@ -119,6 +120,62 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
      */
     public double CalculateDeposit(double sum, double percentage, int countDay){
         return Math.pow((double)1 + percentage / 100, (double)countDay / 365) * sum;
+=======
+     * Вывод результата расчета депозита для выбранной валюты
+     * @param sum сумма вклада на депозит
+     */
+    public void PrintResultCalc(double sum){
+        int countDay = 0;
+
+        tOutput.setText("");
+        // Если выбран срок вклада 3 месяца
+        if(cb.getSelectedIndex() == 0) countDay = 90;       // 90 дней
+        // Иначе если выбран срок вклада 6 месяцев и так далее
+        else if(cb.getSelectedIndex() == 1) countDay = 182; // 182 дней
+        else if(cb.getSelectedIndex() == 2) countDay = 272; // 272 дней
+        else if(cb.getSelectedIndex() == 3) countDay = 365; // 365 дней
+        else if(cb.getSelectedIndex() == 4) countDay = 730; // 730 дней
+
+
+        // Если выбраны рубли
+        if(rbRub.isSelected()){
+            // Выводим информацию расчетов по рублям для возможных тарифов
+            tOutput.append("=======> Рубли <=======\n");
+            tOutput.append("Тариф «Победа»  - ставка 8,5% годовых\n");
+            tOutput.append("      Начальная сумма - " + String.format("%.3f", sum) + " руб\n");
+            tOutput.append("      Итоговая сумма  - " +
+                    String.format("%.3f", CalculateDeposit(sum, 8.5, countDay)) + " руб\n");
+            // Если выбран срок депозита от 1 года
+            if(cb.getSelectedIndex() > 2) {
+                tOutput.append("Тариф «Премьер»  - ставка 9,5% годовых\n");
+                tOutput.append("      Начальная сумма - " + String.format("%.3f", sum) + " руб\n");
+                tOutput.append("      Итоговая сумма  - " +
+                        String.format("%.3f", CalculateDeposit(sum, 9.5, countDay)) + " руб\n");
+            }
+            tOutput.append("Тариф «Пенсионный»  - ставка 11% годовых\n");
+            tOutput.append("Тариф только для пенсионеров!\n");
+            tOutput.append("      Начальная сумма - " + String.format("%.3f", sum) + " руб\n");
+            tOutput.append("      Итоговая сумма  - " +
+                    String.format("%.3f", CalculateDeposit(sum, 11, countDay)) + " руб\n");
+        }
+        // Если выбраны доллары
+        else if(rbDol.isSelected()){
+            // Выводим информацию расчетов для долларов для возможных тарифов
+            tOutput.append("=======> Доллары <=======\n");
+            tOutput.append("Тариф «Рантье»  - ставка 2% годовых\n");
+            tOutput.append("      Начальная сумма - " + String.format("%.3f", sum) + " $\n");
+            tOutput.append("      Итоговая сумма  - " +
+                    String.format("%.3f", CalculateDeposit(sum, 2, countDay)) + " $\n");
+
+            // Если выбран срок депозита от 1 года
+            if(cb.getSelectedIndex() > 2) {
+                tOutput.append("Тариф «Рантье+»  - ставка 2.5% годовых\n");
+                tOutput.append("      Начальная сумма - " + String.format("%.3f", sum) + " $\n");
+                tOutput.append("      Итоговая сумма  - " +
+                        String.format("%.3f", CalculateDeposit(sum, 2.5, countDay)) + " $\n");
+            }
+        }
+>>>>>>> mstarven
     }
 
     /**
