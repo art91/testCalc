@@ -183,7 +183,20 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
      */
     public class ButtonCalcActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-            
+            double summa = 0;
+            // Если сумма депозита введена
+            if(!tSum.getText().isEmpty()){
+                try{
+                    // Считываем сумму из текстового поля
+                    summa = Double.parseDouble(tSum.getText());
+                    // Выводим рассчитанный результат
+                    PrintResultCalc(summa);
+                }
+                catch (Exception exp){
+                    // Выводим сообщение об ошибке в случае неверного ввода
+                    JOptionPane.showMessageDialog(null, "Введите число\n" + exp.getMessage());
+                }
+            }
         }
     }
 
@@ -192,6 +205,14 @@ public class FormCalc extends JFrame {      // Наследуя от JFrame мы
      */
     public class RadioButtonActionListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-
+            if(e.getSource() == rbRub){
+                rbDol.setSelected(false);
+                rbRub.setSelected(true);
+            }
+            else if(e.getSource() == rbDol){
+                rbRub.setSelected(false);
+                rbDol.setSelected(true);
+            }
+        }
     }
 }
